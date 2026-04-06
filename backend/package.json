@@ -1,0 +1,21 @@
+{
+  "name": "backend",
+  "scripts": {
+    "dev": "nodemon --watch src --exec ts-node src/server.ts"
+  },
+  "dependencies": {
+    "express": "^4",
+    "jsonwebtoken": "^9",
+    "bcrypt": "^5",
+    "cookie-parser": "^1",
+    "cors": "^2",
+    "mysql2": "^3",
+    "dotenv": "^16"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "ts-node": "^10",
+    "nodemon": "^3",
+    "@types/express": "^4"
+  }
+}
