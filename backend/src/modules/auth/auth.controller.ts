@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { generateAccessToken, generateRefreshToken } from "../../utils/jwt";
+import jwt from "jsonwebtoken";
 
 export const login = async (req: Request, res: Response) => {
   const user = { id: 1, role: "admin" }; // mock
