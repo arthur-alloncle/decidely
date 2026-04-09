@@ -3,14 +3,17 @@ services:
     build: ./backend
     container_name: backend
     ports:
-      - "5005:5005"
+      - "5000:5000"
     volumes:
       - ./backend:/app
       - /app/node_modules
     env_file:
-      - .env
+      - backend/.env
     depends_on:
       - db
+    networks:
+      - public
+      - private
     command: npm run dev
 
   frontend:
@@ -21,6 +24,10 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
+    networks:
+      - public
+    depends_on:
+      - backend
     command: npm run dev
 
   db:
@@ -30,6 +37,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: app_db
+    networks:
+      - private
     ports:
       - "3306:3306"
     volumes:
@@ -38,3 +47,6 @@ services:
 
 volumes:
   db_data:
+networks:
+  public:
+  private:
