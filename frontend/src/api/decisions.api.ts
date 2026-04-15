@@ -1,0 +1,38 @@
+import type Decision from "../interfaces/decision.interface";
+
+export const getDecisions = async () => {
+  const res = await fetch("http://localhost:5000/decision/list", {
+    credentials: "include",
+  });
+  if (!res.ok) {
+    return;
+  }
+  const list = await res.json();
+  let formated: Decision[] = [];
+
+  list.map((decision: Decision) => {
+    formated.push({
+      ...decision,
+      outcome:
+        decision.outcome === 0
+          ? "echec"
+          : decision.outcome === null
+            ? "en cours"
+            : "succes",
+    });
+  });
+  return formated;
+};
+
+export const postDecision = async (body: BodyInit | null | undefined) => {
+    const res = await fetch("http://localhost:5000/decision/create", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body,
+    });
+
+    return res.json()
+}

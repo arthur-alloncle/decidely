@@ -7,7 +7,7 @@ if (!JWT_SECRET) {
 }
 
 export const generateAccessToken = (payload: any) =>
-  jwt.sign(payload, process.env.JWT_SECRET!, { expiresIn: "15m" });
+  jwt.sign(payload, process.env.JWT_SECRET!, { expiresIn: "7d" });
 
 export const generateRefreshToken = (payload: any) =>
   jwt.sign(payload, process.env.JWT_REFRESH_SECRET!, { expiresIn: "7d" });
