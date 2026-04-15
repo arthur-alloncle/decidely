@@ -32,7 +32,7 @@ function DecisionsDashboard() {
   
   return (
     <div className="grid">
-      <div className="col-3">
+      <div className="col-12 lg:col-3">
         <h1>Créer une décision</h1>
         <Card>
           <CreateDecision 
@@ -40,7 +40,7 @@ function DecisionsDashboard() {
           onSubmit={createDecision}/>
         </Card>
       </div>
-      <div className="col-9">
+      <div className="col-12 lg:col-9">
         <h1>Liste des décisions</h1>
         <Card>
           <ListDecisions decisions={decisions} />
