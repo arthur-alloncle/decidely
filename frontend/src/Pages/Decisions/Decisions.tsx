@@ -1,52 +1,49 @@
 import ListDecisions from "./ListDecisions";
 import CreateDecision from "./CreateDecision";
 import { Card } from "primereact/card";
-import { useEffect, useState } from "react";
-import { getDecisions } from "../../api/decisions.api";
 import type Decision from "../../interfaces/decision.interface";
 import type Category from "../../interfaces/category.interface";
-import { getCategories } from "../../api/category.api";
+
+import { useDecisions } from "../../hooks/useDecisions";
+import { useCategories } from "../../hooks/useCategories";
+
+export interface DecisionForm {
+  outcome: null | number;
+  confidence: number;
+  importance: number;
+  title: string;
+  category_id: string;
+}
 
 export interface Props {
-  decisions?: Decision[] | undefined;
-  categories?: Category[] | undefined;
+  decisions?: Decision[];
+  categories?: Category[];
+}
+
+// Submit not optional 
+export interface SubmitProps extends Props {
+  onSubmit: (form: DecisionForm) => Promise<void>
+  
 }
 
 function DecisionsDashboard() {
-  const [props, setProps] = useState<Props>();
-
-  const loadData = async () => {
-    try {
-      const [categories, decisions] = await Promise.all([
-        getCategories(),
-        getDecisions(),
-      ]);
-
-      setProps({
-        categories,
-        decisions,
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  useEffect(() => {
-    loadData();
-  }, []);
+  const { decisions, createDecision } = useDecisions();
+  const { categories } = useCategories();
   
   return (
     <div className="grid">
       <div className="col-3">
         <h1>Créer une décision</h1>
         <Card>
-          <CreateDecision {...props} />
+          <CreateDecision 
+          categories={categories}
+          onSubmit={createDecision}/>
         </Card>
       </div>
       <div className="col-9">
         <h1>Liste des décisions</h1>
         <Card>
-          <ListDecisions {...props} />
+          <ListDecisions decisions={decisions} />
         </Card>
         <div className="col-12">
           <h1>Statistiques</h1>
