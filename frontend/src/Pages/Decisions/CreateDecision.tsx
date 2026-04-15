@@ -1,22 +1,10 @@
-import { useState, useEffect, type ChangeEvent, type SubmitEvent } from "react";
+import { useState, type ChangeEvent, type SubmitEvent } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
-import { Dropdown, type DropdownChangeEvent } from "primereact/dropdown";
-import { postDecision } from "../../api/decisions.api";
-import type Category from "../../interfaces/category.interface";
-import { getCategories } from "../../api/category.api";
-import type { Props } from "./Decisions";
+import { Dropdown } from "primereact/dropdown";
+import type { DecisionForm, SubmitProps } from "./Decisions";
 
-interface DecisionForm {
-  outcome: null | number;
-  confidence: number;
-  importance: number;
-  title: string;
-  category_id: string;
-}
-
-function CreateDecision(props: Props) {
-  const [categories, setCategories] = useState<Category[]>();
+function CreateDecision({ categories, onSubmit }: SubmitProps) {
   const [decisionForm, setDecisionForm] = useState<DecisionForm>({
     outcome: null,
     confidence: 0,
@@ -24,26 +12,10 @@ function CreateDecision(props: Props) {
     category_id: "",
     title: "",
   });
-  const [category, setCategory] = useState<string>();
 
-//   useEffect(() => {
-//     getCategories().then((res: Category[] | undefined) => setCategories(res));
-//   }, []);
-
-  const handleSubmit = async (
-    e: SubmitEvent<HTMLFormElement>,
-  ): Promise<void> => {
+   const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const body = JSON.stringify({
-      outcome: decisionForm.outcome,
-      confidence: decisionForm.confidence,
-      importance: decisionForm.importance,
-      title: decisionForm.title,
-      category_id: category,
-    });
-
-    postDecision(body);
+    onSubmit(decisionForm);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -53,10 +25,6 @@ function CreateDecision(props: Props) {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
-  };
-
-  const handleSelectChange = (e: DropdownChangeEvent): void => {
-    setCategory(e.value);
   };
 
   return (
@@ -73,14 +41,16 @@ function CreateDecision(props: Props) {
         </div>
         <div className="flex flex-column gap-2 mt-3">
           <label htmlFor="category">Catégorie</label>
-            <Dropdown
-              value={category}
-              onChange={handleSelectChange}
-              options={props.categories}
-              optionLabel="display_name"
-              optionValue="id"
-              placeholder="Sélectionnez une option"
-            />
+          <Dropdown
+            value={decisionForm.category_id}
+            onChange={(e) =>
+              setDecisionForm({ ...decisionForm, category_id: e.value })
+            }
+            options={categories}
+            optionLabel="display_name"
+            optionValue="id"
+            placeholder="Sélectionnez une option"
+          />
         </div>
         <div className="flex flex-column gap-2 mt-3">
           <label htmlFor="confidence">Niveau de confiance</label>

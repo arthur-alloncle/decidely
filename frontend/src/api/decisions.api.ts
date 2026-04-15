@@ -31,7 +31,7 @@ export const postDecision = async (body: BodyInit | null | undefined) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body,
+      body: JSON.stringify(body),
     });
 
     return res.json()

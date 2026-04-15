@@ -21,7 +21,6 @@ export const useDecisions = () => {
     try {
       const newDecision = await postDecision(form);
 
-      // ⚡ update optimiste
       decisions && setDecisions((prev) => [...(prev as []), newDecision]);
 
     } catch (err) {
