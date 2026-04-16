@@ -23,7 +23,6 @@ function CreateDecision({ categories, onSubmit }: SubmitProps) {
 
     setDecisionForm((prev) => ({
       ...prev,
-      outcome: null,
       [name]: type === "checkbox" ? checked : value,
     }));
   };
