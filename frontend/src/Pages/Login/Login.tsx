@@ -1,6 +1,9 @@
-import { useState, useEffect, type ChangeEvent, type SubmitEvent } from "react";
+import { useState, useRef, type ChangeEvent, type SubmitEvent } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
+import { login } from "../../api/user.api";
+import { Toast } from "primereact/toast";
+import { useNavigate } from "react-router-dom";
 
 interface FormState {
   email: string;
@@ -13,23 +16,30 @@ function Login() {
     password: "",
   });
 
+  const toast = useRef(null);
+
+  const navigate = useNavigate();
+
   const handleSubmit = async (
     e: SubmitEvent<HTMLFormElement>,
   ): Promise<void> => {
     e.preventDefault();
 
-    const body = JSON.stringify({
+    const body = {
       email: form.email,
       password: form.password,
-    });
+    };
 
-    fetch("http://localhost:5000/auth/login", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body,
+    login(body).then((res) => {
+      //@ts-expect-error
+      toast.current.show({
+        severity: res.status === 200 ? "success" : "error",
+        summary: res.message,
+      });
+
+      if (res.status !== 200) return;
+      navigate('/decisions')
+
     });
   };
 
@@ -44,6 +54,7 @@ function Login() {
 
   return (
     <>
+      <Toast ref={toast} />
       <div className="text-center">
         <h1>Login</h1>
       </div>
@@ -69,7 +80,9 @@ function Login() {
             />
           </div>
           <div className="mt-3">
-            <Button type="submit">login</Button>
+            <Button type="submit" disabled={!form.email || !form.password}>
+              login
+            </Button>
           </div>
         </form>
       </div>

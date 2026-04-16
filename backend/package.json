@@ -1,7 +1,8 @@
 {
   "name": "backend",
   "scripts": {
-    "dev": "nodemon --watch src --exec ts-node src/server.ts"
+    "dev": "nodemon --watch src --exec ts-node src/server.ts",
+    "install:docker": "docker exec -it backend -c bash 'npm ci'"
   },
   "dependencies": {
     "@types/bcrypt": "^6.0.0",

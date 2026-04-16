@@ -61,14 +61,14 @@ export const login = async (req: Request, res: Response) => {
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      return res.status(401).json({ message: "Identifiants invalides" });
+      return res.status(401).json({ status: 401, message: "Identifiants invalides" });
     }
 
     // 3. Vérifier le mot de passe
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      return res.status(401).json({ message: "Identifiants invalides" });
+      return res.status(401).json({ status: 401, message: "Identifiants invalides" });
     }
 
     // 4. Payload pour JWT
@@ -95,10 +95,10 @@ export const login = async (req: Request, res: Response) => {
     });
 
     // 7. Réponse
-    return res.json({ message: "Logged in" });
+    return res.status(200).json({ status:  200, message: "Connexion réussie" });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: "Erreur serveur" });
+    return res.status(500).json({ status: 500, message: "Erreur serveur" });
   }
 };
 
