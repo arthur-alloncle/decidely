@@ -23,6 +23,7 @@ function CreateDecision({ categories, onSubmit }: SubmitProps) {
 
     setDecisionForm((prev) => ({
       ...prev,
+      outcome: null,
       [name]: type === "checkbox" ? checked : value,
     }));
   };
@@ -36,6 +37,7 @@ function CreateDecision({ categories, onSubmit }: SubmitProps) {
             type="text"
             name="title"
             id="title"
+            required
             onChange={handleChange}
           />
         </div>
@@ -48,6 +50,7 @@ function CreateDecision({ categories, onSubmit }: SubmitProps) {
             }
             options={categories}
             optionLabel="display_name"
+            required
             optionValue="id"
             placeholder="Sélectionnez une option"
           />
@@ -57,6 +60,7 @@ function CreateDecision({ categories, onSubmit }: SubmitProps) {
           <InputText
             type="text"
             name="confidence"
+            required
             id="confidence"
             onChange={handleChange}
           />
@@ -67,6 +71,7 @@ function CreateDecision({ categories, onSubmit }: SubmitProps) {
           <InputText
             type="text"
             name="importance"
+            required
             id="importance"
             onChange={handleChange}
           />
