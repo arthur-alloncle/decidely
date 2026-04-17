@@ -42,6 +42,18 @@ export class Decision extends Model {
   })
   importance!: string;
 
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  createdAt!: Date;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  updatedAt!: Date;
+
   @ForeignKey(() => User)
   @Column(DataType.UUID)
   user_id!: string;

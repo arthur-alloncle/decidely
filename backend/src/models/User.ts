@@ -1,5 +1,12 @@
 // models/User.ts
-import { Table, Column, Model, DataType, HasMany } from "sequelize-typescript";
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  HasMany,
+  AllowNull,
+} from "sequelize-typescript";
 import { Decision } from "./Decision";
 
 @Table({ tableName: "users", timestamps: false })
@@ -41,11 +48,23 @@ export class User extends Model {
   })
   date_of_birth!: Date;
 
-    @Column({
+  @Column({
     type: DataType.STRING,
     allowNull: false,
   })
   role!: Date;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  createdAt!: Date;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  updatedAt!: Date;
 
   @HasMany(() => Decision)
   decisions!: Decision[];
