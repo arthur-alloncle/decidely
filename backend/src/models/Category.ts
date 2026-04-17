@@ -22,6 +22,18 @@ export class Category extends Model {
   })
   display_name!: string;
 
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  createdAt!: Date;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  updatedAt!: Date;
+
   @HasMany(() => Decision)
   decisions!: Decision[];
 }
