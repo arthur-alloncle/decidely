@@ -1,27 +1,30 @@
 import { NextFunction, Request, Response } from "express";
 import { generateAccessToken, generateRefreshToken } from "../../utils/jwt";
 import jwt from "jsonwebtoken";
-import {Sequelize} from 'sequelize'
-import {User} from '../../models/User'
+import { Sequelize } from "sequelize";
+import { User } from "../../models/User";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 
-// const sequelize = new Sequelize(process.env.DATABASE_URL ? process.env.DATABASE_URL : '' )
-
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { email, password, role, first_name, last_name, date_of_birth } = req.body;
+    const { email, password, role, first_name, last_name, date_of_birth } =
+      req.body;
 
     // Validation simple
     if (!email || !password) {
-      return res.status(400).json({ message: "Email et mot de passe requis" });
+      return res
+        .status(400)
+        .json({ status: 400, message: "Email et mot de passe requis" });
     }
 
     // Vérifier si l'utilisateur existe déjà
     const existingUser = await User.findOne({ where: { email } });
 
     if (existingUser) {
-      return res.status(409).json({ message: "Email déjà utilisé" });
+      return res
+        .status(409)
+        .json({ status: 409, message: "Email déjà utilisé" });
     }
 
     // Hash du mot de passe
@@ -44,7 +47,7 @@ export const createUser = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: "Erreur serveur" });
+    return res.status(500).json({ status: 500, message: "Erreur serveur" });
   }
 };
 
@@ -54,21 +57,27 @@ export const login = async (req: Request, res: Response) => {
 
     // 1. Validation basique
     if (!email || !password) {
-      return res.status(400).json({ message: "Email et mot de passe requis" });
+      return res
+        .status(400)
+        .json({ status: 400, message: "Email et mot de passe requis" });
     }
 
     // 2. Chercher l'utilisateur en base
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      return res.status(401).json({ status: 401, message: "Identifiants invalides" });
+      return res
+        .status(401)
+        .json({ status: 401, message: "Identifiants invalides" });
     }
 
     // 3. Vérifier le mot de passe
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      return res.status(401).json({ status: 401, message: "Identifiants invalides" });
+      return res
+        .status(401)
+        .json({ status: 401, message: "Identifiants invalides" });
     }
 
     // 4. Payload pour JWT
@@ -95,7 +104,7 @@ export const login = async (req: Request, res: Response) => {
     });
 
     // 7. Réponse
-    return res.status(200).json({ status:  200, message: "Connexion réussie" });
+    return res.status(200).json({ status: 200, message: "Connexion réussie" });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ status: 500, message: "Erreur serveur" });
@@ -112,14 +121,14 @@ export const refresh = (req: Request, res: Response) => {
 
     const accessToken = generateAccessToken({
       id: decoded.id,
-      role: decoded.role
+      role: decoded.role,
     });
 
     res.cookie("accessToken", accessToken, { httpOnly: true });
 
-    res.json({ message: "Refreshed" });
+    res.status(200).json({ status: 200, message: "Refreshed" });
   } catch {
-    res.sendStatus(403);
+    res.status(403).json({ status: 403, message: "Forbidden" });
   }
 };
 
