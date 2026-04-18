@@ -10,7 +10,7 @@ export const getDecisions = async () => {
   const list = await res.json();
   let formated: Decision[] = [];
 
-  list.map((decision: Decision) => {
+  list.data.map((decision: Decision) => {
     formated.push({
       ...decision,
       outcome:

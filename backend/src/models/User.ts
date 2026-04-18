@@ -55,13 +55,13 @@ export class User extends Model {
   role!: Date;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.DATE,
     allowNull: false,
   })
   createdAt!: Date;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.DATE,
     allowNull: false,
   })
   updatedAt!: Date;

@@ -17,6 +17,8 @@ module.exports = {
         password,
         date_of_birth: "1998-04-12",
         role: "user",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "e1f9ba69-add5-402d-93eb-cdc9e94c6bbd",
@@ -26,6 +28,8 @@ module.exports = {
         password,
         date_of_birth: "1990-09-21",
         role: "user",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "9f11a3e7-20d6-4542-934b-bb9338e299ee",
@@ -35,6 +39,8 @@ module.exports = {
         password,
         date_of_birth: "1985-02-11",
         role: "user",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
@@ -44,6 +50,8 @@ module.exports = {
         password,
         date_of_birth: "1992-07-30",
         role: "user",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "12056533-b1ba-4ff3-9adb-09d4c4df9ffa",
@@ -53,6 +61,8 @@ module.exports = {
         password,
         date_of_birth: "1998-12-05",
         role: "user",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "9f12e4e4-34ea-43f2-89df-275daab59dc1",
@@ -62,6 +72,8 @@ module.exports = {
         password,
         date_of_birth: "1995-03-18",
         role: "user",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
     ]);
 
@@ -75,6 +87,8 @@ module.exports = {
         importance: 3,
         user_id: "e81ca87b-2bb5-43ed-90ac-82bd74e1d332",
         category_id: "2f48e7c3-ba7e-4b52-bd6f-7d748f0fd2ba",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "7224cfd3-9880-4b72-bed0-155fddcf83cf",
@@ -84,6 +98,8 @@ module.exports = {
         importance: 2,
         user_id: "e81ca87b-2bb5-43ed-90ac-82bd74e1d332",
         category_id: "30ce0986-eaa9-4fe6-9a36-9895b5b1eada",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "481a0100-31c3-45ac-a0eb-1bdbebf47650",
@@ -93,6 +109,8 @@ module.exports = {
         importance: 4,
         user_id: "e1f9ba69-add5-402d-93eb-cdc9e94c6bbd",
         category_id: "2f48e7c3-ba7e-4b52-bd6f-7d748f0fd2ba",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "b9ebccc0-28dd-450a-9664-995a89ec75e9",
@@ -102,6 +120,8 @@ module.exports = {
         confidence: 0.85,
         outcome: 1,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "0d752b59-292d-41fb-ac1b-91b8b2cc0643",
@@ -111,6 +131,8 @@ module.exports = {
         confidence: 0.95,
         outcome: 0,
         importance: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "a5e16319-7599-4531-96df-c41bf4fcc5d1",
@@ -120,6 +142,8 @@ module.exports = {
         confidence: 0.9,
         outcome: 0,
         importance: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "0bbf5344-5872-4be7-8ba2-4b67cab534c7",
@@ -129,6 +153,8 @@ module.exports = {
         confidence: 0.8,
         outcome: 1,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "beae5d44-9ae0-4cf5-92f1-a23da785fc0a",
@@ -138,6 +164,8 @@ module.exports = {
         confidence: 0.85,
         outcome: 0,
         importance: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "3756b196-0293-4029-ab8d-2372b3ef9b05",
@@ -147,6 +175,8 @@ module.exports = {
         confidence: 0.9,
         outcome: 1,
         importance: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "da4b116e-e52b-44fa-addc-49ffb77a79fd",
@@ -156,6 +186,8 @@ module.exports = {
         confidence: 0.95,
         outcome: 0,
         importance: 5,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "e567c303-ac1a-4b50-9752-1a469227f256",
@@ -165,6 +197,8 @@ module.exports = {
         confidence: 0.88,
         outcome: 0,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "835b91e1-002f-4a68-bb6b-bde536d2d1b0",
@@ -174,6 +208,8 @@ module.exports = {
         confidence: 0.9,
         outcome: 1,
         importance: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "37020f02-60b8-4236-b3fd-585002dcca69",
@@ -183,6 +219,8 @@ module.exports = {
         confidence: 0.4,
         outcome: 1,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "7d2209f7-c02e-45f9-8765-c9f1937c574a",
@@ -192,6 +230,8 @@ module.exports = {
         confidence: 0.3,
         outcome: 1,
         importance: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "e8169c69-8d7a-4a7a-8d10-5bb3385d58a1",
@@ -201,6 +241,8 @@ module.exports = {
         confidence: 0.35,
         outcome: 0,
         importance: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "78b41e6f-417b-4cc7-93a6-85da24fb481d",
@@ -210,6 +252,8 @@ module.exports = {
         confidence: 0.45,
         outcome: 1,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "53bee4d1-e340-4272-b221-eb36de3c7790",
@@ -219,6 +263,8 @@ module.exports = {
         confidence: 0.4,
         outcome: 1,
         importance: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "25ca9492-b165-4ef2-a51e-9dd9307200b0",
@@ -228,6 +274,8 @@ module.exports = {
         confidence: 0.5,
         outcome: 1,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "806f551e-f784-4931-be91-31305dc9ef1e",
@@ -237,6 +285,8 @@ module.exports = {
         confidence: 0.3,
         outcome: 0,
         importance: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "ef40c330-e2d2-43e8-82db-338f358427e0",
@@ -246,6 +296,8 @@ module.exports = {
         confidence: 0.4,
         outcome: 1,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "8d108a93-fd8e-4902-9968-fa86b585de90",
@@ -255,6 +307,8 @@ module.exports = {
         confidence: 0.35,
         outcome: 1,
         importance: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "89543a72-ff55-4840-a8b3-94574f2462e3",
@@ -264,6 +318,8 @@ module.exports = {
         confidence: 0.45,
         outcome: 1,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "66b1e4cf-8bde-4290-9667-801db7038bc1",
@@ -273,6 +329,8 @@ module.exports = {
         outcome: 1,
         importance: 3,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "036044af-c717-418d-b01b-cbebe1da9bfb",
@@ -282,6 +340,8 @@ module.exports = {
         outcome: 0,
         importance: 2,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "128a2364-32a1-46ed-926f-cd3527e63224",
@@ -291,6 +351,8 @@ module.exports = {
         outcome: 1,
         importance: 4,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "3dd275c9-ab88-4062-b5e0-caa7ed451600",
@@ -300,6 +362,8 @@ module.exports = {
         outcome: 1,
         importance: 3,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "cf138b51-9e14-4ad3-98e9-7d6e029703cc",
@@ -309,6 +373,8 @@ module.exports = {
         outcome: 0,
         importance: 3,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "6deac683-4a5d-444c-a28b-3556deb77bcf",
@@ -318,6 +384,8 @@ module.exports = {
         outcome: 1,
         importance: 4,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "b5907002-f87d-4a43-b1e9-b4fd3b9cec8c",
@@ -327,6 +395,8 @@ module.exports = {
         outcome: 1,
         importance: 5,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "f3894874-77cd-4980-99c2-29b27cfb40df",
@@ -336,6 +406,8 @@ module.exports = {
         outcome: 0,
         importance: 2,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "8fd62cd5-c1a0-4213-b794-eb276eb4dff3",
@@ -345,15 +417,21 @@ module.exports = {
         outcome: 1,
         importance: 4,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "1e8ea076-940a-44cb-bc76-511354deb8a8",
         title: "Organiser une soirée entre amis",
         category_id: "bbaf2453-b012-42c8-8aea-3f9ef9756ad7",
         confidence: 0.49,
+        createdAt: new Date(),
+        updatedAt: new Date(),
         outcome: 1,
         importance: 3,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "baa870e6-c8ef-44d6-aee4-52ea7d2edad6",
@@ -363,6 +441,8 @@ module.exports = {
         outcome: 1,
         importance: 3,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "6cc80c1b-a237-4c8f-8589-a37bb897bfe9",
@@ -372,6 +452,8 @@ module.exports = {
         outcome: 0,
         importance: 2,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "45d0540f-0e4a-4be4-9fe0-4bb55b7d5fce",
@@ -381,6 +463,8 @@ module.exports = {
         outcome: 1,
         importance: 4,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "7c94e793-b53c-49a3-a39a-196e071b656a",
@@ -390,6 +474,8 @@ module.exports = {
         outcome: 1,
         importance: 3,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "6d3eba33-6a76-4bdf-862b-e1c271bd96e1",
@@ -399,6 +485,8 @@ module.exports = {
         outcome: 0,
         importance: 2,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "7fbb92de-6453-41b6-aadc-fea41b517876",
@@ -408,6 +496,8 @@ module.exports = {
         outcome: 1,
         importance: 4,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "7bf1a116-7d32-4b10-a9f1-608c431448bb",
@@ -417,6 +507,8 @@ module.exports = {
         outcome: 1,
         importance: 5,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "c05b9f9f-3820-404f-9d1d-b400d23cf955",
@@ -426,15 +518,21 @@ module.exports = {
         outcome: 0,
         importance: 2,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "af9f6a7c-f57c-46eb-b9e3-fc55c6c54226",
         title: "Créer une routine matinale",
         category_id: "30ce0986-eaa9-4fe6-9a36-9895b5b1eada",
+        createdAt: new Date(),
+        updatedAt: new Date(),
         confidence: 0.81,
         outcome: 1,
         importance: 4,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "160f356c-f13a-4b3c-b415-0877a0cf7c83",
@@ -444,6 +542,8 @@ module.exports = {
         outcome: 1,
         importance: 3,
         user_id: "7a5d154e-2fd3-4354-8c42-342a25d97207",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "dc675947-e932-4c4d-9a10-ce6abc86f1dc",
@@ -453,6 +553,8 @@ module.exports = {
         confidence: 0.5,
         outcome: 1,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "0bb6c8ce-9945-49a3-bc4b-236c3cc282de",
@@ -462,6 +564,8 @@ module.exports = {
         confidence: 0.52,
         outcome: 0,
         importance: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "5d72cde8-5e78-416d-918c-4848983393fc",
@@ -471,6 +575,8 @@ module.exports = {
         confidence: 0.48,
         outcome: 1,
         importance: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "7cb4265f-b4b2-41a4-a289-fe147cb09250",
@@ -480,6 +586,8 @@ module.exports = {
         confidence: 0.51,
         outcome: 1,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "dbb2028d-8e85-46a3-8aee-2c90d7930c7b",
@@ -489,6 +597,8 @@ module.exports = {
         confidence: 0.49,
         outcome: 0,
         importance: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "0dd9d5fe-1855-4a79-a044-12be147df562",
@@ -498,6 +608,8 @@ module.exports = {
         confidence: 0.5,
         outcome: 1,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "16857b29-fa32-4b91-8c98-3485fecec56b",
@@ -507,6 +619,8 @@ module.exports = {
         confidence: 0.53,
         outcome: 0,
         importance: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "7c1c7d67-980e-4850-b441-0ea050220b63",
@@ -516,6 +630,8 @@ module.exports = {
         confidence: 0.47,
         outcome: 1,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "69b3760b-5eca-42fd-976a-2a4d1214bbe0",
@@ -525,6 +641,8 @@ module.exports = {
         confidence: 0.5,
         outcome: 0,
         importance: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "4631105a-ff65-4f82-ba3b-a6b75b68a6c0",
@@ -534,6 +652,8 @@ module.exports = {
         confidence: 0.52,
         outcome: 1,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "eaa7a389-6906-4e86-8cbe-a0355da90bff",
@@ -543,6 +663,8 @@ module.exports = {
         confidence: 0.8,
         outcome: 0,
         importance: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "cdb02ad7-5317-4be1-973b-72e292d336eb",
@@ -552,6 +674,8 @@ module.exports = {
         confidence: 0.8,
         outcome: 0,
         importance: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "497e8219-62b4-4c46-9be6-c7eda03a7344",
@@ -561,6 +685,8 @@ module.exports = {
         confidence: 0.8,
         outcome: 1,
         importance: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "a53facfb-f58f-496c-a7fd-0186dbc435df",
@@ -570,6 +696,8 @@ module.exports = {
         confidence: 0.2,
         outcome: 1,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "48594c92-dd72-474f-8bce-6430b862ad72",
@@ -579,6 +707,8 @@ module.exports = {
         confidence: 0.2,
         outcome: 1,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "61f53872-d3e8-47ca-aaea-0ca695b9e3c6",
@@ -588,6 +718,8 @@ module.exports = {
         confidence: 0.2,
         outcome: 1,
         importance: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "8a881ded-6c70-43b9-8a28-20739c170a52",
@@ -597,6 +729,8 @@ module.exports = {
         confidence: 0.9,
         outcome: 0,
         importance: 5,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: "0ffab424-fad6-46ea-a792-1314a6bcda73",
@@ -606,6 +740,8 @@ module.exports = {
         confidence: 0.1,
         outcome: 1,
         importance: 5,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
     ]);
   },
