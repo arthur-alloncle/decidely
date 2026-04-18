@@ -79,7 +79,11 @@ module.exports = {
         id: uuidv4(),
         title: faker.lorem.sentence(3),
         confidence: faker.number.float({ min: 0.3, max: 0.95 }),
-        outcome: faker.datatype.boolean() ? 1 : 0,
+        outcome: faker.helpers.weightedArrayElement([
+          { value: 1, weight: 0.4 },
+          { value: 0, weight: 0.4 },
+          { value: null, weight: 0.2 },
+        ]),
         importance: faker.number.int({ min: 1, max: 4 }),
         user_id: randomUser.id,
         category_id: randomCategory.id,

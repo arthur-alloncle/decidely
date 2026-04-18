@@ -23,13 +23,13 @@ export class Category extends Model {
   display_name!: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.DATE,
     allowNull: false,
   })
   createdAt!: Date;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.DATE,
     allowNull: false,
   })
   updatedAt!: Date;
