@@ -68,9 +68,37 @@ module.exports = {
     await queryInterface.bulkInsert("categories", categories);
 
     // ===== DECISIONS =====
+
     const decisions = [];
 
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 150; i++) {
+      const createdAt = faker.date.between({
+        from: new Date("2026-01-01"),
+        to: Date.now(),
+      });
+
+      // différence en jours
+      const daysDiff =
+        (new Date().getTime() - createdAt.getTime()) / (1000 * 60 * 60 * 24);
+
+      let outcome;
+
+      // logique métier
+      if (daysDiff < 10) {
+        // décision récente → souvent non évaluée
+        outcome = faker.helpers.weightedArrayElement([
+          { value: null, weight: 60 },
+          { value: 1, weight: 20 },
+          { value: 0, weight: 20 },
+        ]);
+      } else {
+        // décision ancienne → évaluée
+        outcome = faker.helpers.weightedArrayElement([
+          { value: 1, weight: 40 },
+          { value: 0, weight: 50 },
+          { value: null, weight: 10 },
+        ]);
+      }
       const randomUser = users[Math.floor(Math.random() * users.length)];
       const randomCategory =
         categories[Math.floor(Math.random() * categories.length)];
@@ -79,15 +107,11 @@ module.exports = {
         id: uuidv4(),
         title: faker.lorem.sentence(3),
         confidence: faker.number.float({ min: 0.3, max: 0.95 }),
-        outcome: faker.helpers.weightedArrayElement([
-          { value: 1, weight: 0.4 },
-          { value: 0, weight: 0.4 },
-          { value: null, weight: 0.2 },
-        ]),
+        outcome,
         importance: faker.number.int({ min: 1, max: 4 }),
         user_id: randomUser.id,
         category_id: randomCategory.id,
-        createdAt: new Date(),
+        createdAt,
         updatedAt: new Date(),
       });
     }

@@ -8,5 +8,5 @@ export const getCategories = async (): Promise<Category[] | undefined> => {
       }
       const list = await res.json();
 
-      return list
+      return list.data
 }

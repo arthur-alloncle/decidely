@@ -22,13 +22,13 @@ const ListDecisions = ({ decisions }: Props) => {
           >
             <div className="grid align-items-center">
               <div className="col-12 lg:col-6">
-                <p className="font-semibold">Évaluation</p>
-                <p> Niveau de confiance
-                  <Rating value={decision.confidence} stars={10} readOnly cancel={false} />
-                  </p>
-                <p>Impact
+                <p className="font-semibold">Variables</p>
+                <p> Niveau de confiance</p>
+                  <Rating value={decision.confidence * 10} stars={10} readOnly cancel={false} />
+                  
+                <p>Impact</p>
                   <Rating value={decision.importance} stars={4} readOnly cancel={false} />
-                </p>
+                
               </div>
               <div className="col-12 text-center lg:col-6">
                 <p className="font-semibold">Évaluer la décision</p>
