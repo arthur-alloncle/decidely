@@ -8,18 +8,21 @@ interface IGetUserAuthInfoRequest extends Request {
 }
 
 export const create = async (req: IGetUserAuthInfoRequest, res: Response) => {
-    console.log(req.user);
-    
+  console.log(req.user);
+
   try {
     const { name, display_name } = req.body;
 
     // Get current user to check its role
-    const loggedUser = User.findOne({where: {id: req.user?.id}})
+    const loggedUser = User.findOne({ where: { id: req.user?.id } });
 
     if (!loggedUser && loggedUser !== "admin") {
       return res
         .status(401)
-        .json({ message: "Should be logged in as administrator" });
+        .json({
+          status: "401",
+          message: "Unauthorized: should be logged in as administrator",
+        });
     }
 
     const category = await Category.create({
@@ -28,10 +31,11 @@ export const create = async (req: IGetUserAuthInfoRequest, res: Response) => {
       display_name,
     });
 
-    return res.status(201).json(category);
+    return res
+      .status(201)
+      .json({ data: category, status: 201, message: "Category created" });
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: "Server error" });
+    return res.status(500).json({ status: 500, message: "Server error" });
   }
 };
 
@@ -41,8 +45,12 @@ export const list = async (req: Request, res: Response) => {
       attributes: ["name", "display_name", "id"],
     });
 
-    return res.json(categories)
+    return res.json({
+      data: categories,
+      status: 200,
+      message: "Categories fetched",
+    });
   } catch (error) {
-    console.error(error);
+    return res.status(500).json({ status: 500, message: "Server error" });
   }
 };
