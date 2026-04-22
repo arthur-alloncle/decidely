@@ -31,13 +31,13 @@ jobs:
         run: npm ci
 
       - name: Installation des navigateurs Playwright
-        run: npx playwright install --with-deps chromium firefox webkit
+        run: npx playwright install --with-deps chromium firefox 
 
       - name: Build de l'application
         run: npm run build
 
       - name: Lancement des tests Playwright
-        run: npx playwright test login.spec.ts
+        run: npx playwright test
 
       - name: Upload du rapport en cas d'échec
         if: failure()
