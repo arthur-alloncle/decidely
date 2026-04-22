@@ -22,33 +22,35 @@ jobs:
           node-version: 22
           cache: 'npm'
 
-      - name: Changement de dossier pour /frontend
-        run: cd frontend
-
       - name: Installation des dépendances
+        working-directory: ./frontend
         run: npm ci
 
       - name: Installation des navigateurs Playwright
         run: npx playwright install --with-deps chromium
+        working-directory: ./frontend
 
       - name: Build de l'application
+        working-directory: ./frontend
         run: npm run build
 
       - name: Démarrage de l'application en arrière-plan
-        run: npm run preview &
-        # Si tu utilises "dev" plutôt que "preview" :
-        # run: npm run dev &
+        working-directory: ./frontend
+        run: npm run dev &
 
       - name: Attendre que le serveur soit prêt
+        working-directory: ./frontend
         run: npx wait-on http://localhost:5173 --timeout 30000
 
       - name: Lancement des tests Playwright
-        run: npx playwright test login.spec.ts
+        working-directory: ./frontend
+        run: npx playwright test
 
       - name: Upload du rapport en cas d'échec
         if: failure()
         uses: actions/upload-artifact@v4
         with:
+          working-directory: ./frontend
           name: playwright-report
           path: frontend/playwright-report/
           retention-days: 7
