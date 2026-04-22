@@ -5,7 +5,7 @@ export const useSignup = () => {
     const [signup, setSignup] = useState<any>();
     const [loading, setLoading] = useState<boolean>(true);
 
-    const createUser = async (form: any) => {
+    const createNewUser = async (form: any) => {
         try {
             const newUser = await createUser(form);
             signup && setSignup((prev: any) => [...(prev as []), newUser])
@@ -15,5 +15,5 @@ export const useSignup = () => {
             setLoading(false)
         }
     }
-    return {createUser, loading}
+    return {createNewUser, loading}
 }

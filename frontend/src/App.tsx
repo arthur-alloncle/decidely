@@ -7,12 +7,14 @@ import 'primeicons/primeicons.css';
 // import 'primereact/resources/themes/lara-light-indigo/theme.css'; //theme
 
 import DecisionsDashboard from "./Pages/Decisions/Decisions";
+import Signup from "./Pages/Signup/Signup";
 export function App() {
   return (
     <>
       <Routes>
         <Route element={<Login />} path="/login" />
         <Route element={<DecisionsDashboard />} path="/decisions" />
+        <Route element={<Signup />} path="/signup" />
       </Routes>
     </>
   )

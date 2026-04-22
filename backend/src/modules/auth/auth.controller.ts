@@ -5,6 +5,7 @@ import { Sequelize } from "sequelize";
 import { User } from "../../models/User";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
+import { CreatedAt } from "sequelize-typescript";
 
 export const createUser = async (req: Request, res: Response) => {
   try {
@@ -35,10 +36,12 @@ export const createUser = async (req: Request, res: Response) => {
       id: uuidv4(),
       email,
       password: hashedPassword,
-      role,
+      role: 'user',
       first_name,
       last_name,
       date_of_birth,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
 
     return res.status(201).json({

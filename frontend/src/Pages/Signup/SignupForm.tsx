@@ -2,7 +2,6 @@ import { useState, type ChangeEvent, type SubmitEvent } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import type { FormState, Props } from "./Signup";
-import { Calendar } from 'primereact/calendar';
         
 
 function SignupForm({ onSubmit }: Props) {
@@ -11,6 +10,7 @@ function SignupForm({ onSubmit }: Props) {
     last_name: "",
     email: "",
     date_of_birth: "",
+    password: ""
   });
 
   const handleSubmit = async (
