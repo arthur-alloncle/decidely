@@ -14,13 +14,16 @@ jobs:
 
     steps:
       - name: Checkout du code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.4.0
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
+
+      - name: Changement de dossier pour /frontend
+        run: cd frontend
 
       - name: Installation des dépendances
         run: npm ci
@@ -47,5 +50,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
-          path: playwright-report/
+          path: frontend/playwright-report/
           retention-days: 7
