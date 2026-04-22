@@ -31,7 +31,7 @@ jobs:
         run: npm ci
 
       - name: Installation des navigateurs Playwright
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps chromium firefox webkit
 
       - name: Build de l'application
         run: npm run build
