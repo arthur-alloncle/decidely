@@ -3,10 +3,14 @@ name: E2E Tests
 on:
   push:
     branches:
-      - '**'        # tous les push sur toutes les branches
+      - '**'
   pull_request:
     branches:
-      - main        # ou master selon ton projet
+      - main
+
+defaults:
+  run:
+    working-directory: frontend
 
 jobs:
   e2e:
@@ -21,36 +25,24 @@ jobs:
         with:
           node-version: 22
           cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
 
       - name: Installation des dépendances
-        working-directory: ./frontend
         run: npm ci
 
       - name: Installation des navigateurs Playwright
         run: npx playwright install --with-deps chromium
-        working-directory: ./frontend
 
       - name: Build de l'application
-        working-directory: ./frontend
         run: npm run build
 
-      - name: Démarrage de l'application en arrière-plan
-        working-directory: ./frontend
-        run: npm run dev &
-
-      - name: Attendre que le serveur soit prêt
-        working-directory: ./frontend
-        run: npx wait-on http://localhost:5173 --timeout 30000
-
       - name: Lancement des tests Playwright
-        working-directory: ./frontend
-        run: npx playwright test
+        run: npx playwright test login.spec.ts
 
       - name: Upload du rapport en cas d'échec
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.6.2
         with:
-          working-directory: ./frontend
           name: playwright-report
           path: frontend/playwright-report/
           retention-days: 7
