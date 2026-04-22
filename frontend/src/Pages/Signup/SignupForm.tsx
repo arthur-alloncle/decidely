@@ -1,7 +1,8 @@
-import { useState, type ChangeEvent, type SubmitEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent, type SubmitEvent, type SyntheticEvent } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import type { FormState, Props } from "./Signup";
+import { Calendar, type CalendarProps } from "primereact/calendar";
         
 
 function SignupForm({ onSubmit }: Props) {
@@ -9,7 +10,7 @@ function SignupForm({ onSubmit }: Props) {
     first_name: "",
     last_name: "",
     email: "",
-    date_of_birth: "",
+    date_of_birth: null,
     password: ""
   });
 
@@ -20,6 +21,7 @@ function SignupForm({ onSubmit }: Props) {
     onSubmit(form);
   };
 
+  const [date, setDate] = useState(null)
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value, type, checked } = e.target;
 
@@ -28,6 +30,15 @@ function SignupForm({ onSubmit }: Props) {
       [name]: type === "checkbox" ? checked : value,
     }));
   };
+
+  // Any here
+  const handleDobChange = (e: any) => {
+    setDate(e.value)
+    setForm((prev) => ({
+      ...prev,
+      date_of_birth: e.value
+    }))
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -41,7 +52,7 @@ function SignupForm({ onSubmit }: Props) {
           />
       </div>
       <div className="flex flex-column gap-2">
-        <label htmlFor="last_name">Prénom</label>
+        <label htmlFor="last_name">Nom</label>
           <InputText
             type="text"
             name="last_name"
@@ -51,12 +62,7 @@ function SignupForm({ onSubmit }: Props) {
       </div>
       <div className="flex flex-column gap-2">
         <label htmlFor="date_of_birth">Date de naissance</label>
-        <InputText
-            type="text"
-            name="date_of_birth"
-            id="date_of_birth"
-            onChange={handleChange}
-          />
+          <Calendar value={date} onChange={handleDobChange} maxDate={new Date()} />
       </div>
       <div className="flex flex-column gap-2">
         <label htmlFor="email">Adresse email</label>

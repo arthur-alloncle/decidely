@@ -2,11 +2,11 @@ import SignupForm from "./SignupForm";
 import { useSignup } from "../../hooks/useSignup";
 
 export interface FormState {
-  first_name: "";
-  last_name: "";
-  email: "";
-  date_of_birth: "";
-  password: "";
+  first_name: string;
+  last_name: string;
+  email: string;
+  date_of_birth: Date | null;
+  password: string;
 }
 
 // Submit not optional
