@@ -22,6 +22,9 @@ jobs:
           node-version: 22
           cache: 'npm'
 
+      - name: Changement de dossier pour /frontend
+        run: cd frontend
+
       - name: Installation des dépendances
         run: npm ci
 
