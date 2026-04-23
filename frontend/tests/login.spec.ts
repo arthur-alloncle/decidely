@@ -34,7 +34,7 @@ async function mockLoginFailure(page: Page): Promise<void> {
 async function fillAndSubmit(page: Page): Promise<void> {
   await page.getByLabel("Adresse email").fill("sophie.durand@test.com");
   await page.getByLabel("Mot de passe").fill("password123");
-  await page.getByRole("button", { name: "login" }).click();
+  await page.getByRole("button", { name: "Se connecter" }).click();
 }
 
 
@@ -46,30 +46,30 @@ test.describe("Page de Login - Affichage", () => {
   // ─── Form display tests ───────────────────────────────────────────────────
 
   test("affiche correctement les champs du formulaire", async ({ page }) => {
-    await expect(page.getByRole("heading", { name: "Login" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Connexion" })).toBeVisible();
     await expect(page.getByLabel("Adresse email")).toBeVisible();
     await expect(page.getByLabel("Mot de passe")).toBeVisible();
-    await expect(page.getByRole("button", { name: "login" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Se connecter" })).toBeVisible();
   });
 
   test("le bouton login est désactivé si les champs sont vides", async ({
     page,
   }) => {
-    await expect(page.getByRole("button", { name: "login" })).toBeDisabled();
+    await expect(page.getByRole("button", { name: "Se connecter" })).toBeDisabled();
   });
 
   test("le bouton login est désactivé si seulement l'email est rempli", async ({
     page,
   }) => {
     await page.getByLabel("Adresse email").fill("sophie.durand@test.com");
-    await expect(page.getByRole("button", { name: "login" })).toBeDisabled();
+    await expect(page.getByRole("button", { name: "Se connecter" })).toBeDisabled();
   });
 
   test("le bouton login est désactivé si seulement le mot de passe est rempli", async ({
     page,
   }) => {
     await page.getByLabel("Mot de passe").fill("password123");
-    await expect(page.getByRole("button", { name: "login" })).toBeDisabled();
+    await expect(page.getByRole("button", { name: "Se connecter" })).toBeDisabled();
   });
 });
 

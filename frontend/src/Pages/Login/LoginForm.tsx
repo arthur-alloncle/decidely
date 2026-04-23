@@ -2,6 +2,9 @@ import { useState, type ChangeEvent, type SubmitEvent } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import type { FormState, Props } from "./Login";
+import { commonStyles } from "../../helpers/styles";
+import { Password } from "primereact/password";
+
 
 function Login({ onSubmit }: Props) {
   const [form, setForm] = useState<FormState>({
@@ -13,7 +16,7 @@ function Login({ onSubmit }: Props) {
     e: SubmitEvent<HTMLFormElement>,
   ): Promise<void> => {
     e.preventDefault();
-    onSubmit(form);
+    onSubmit(form)
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -39,16 +42,28 @@ function Login({ onSubmit }: Props) {
 
       <div className="flex flex-column gap-2 mt-3">
         <label htmlFor="password">Mot de passe</label>
-        <InputText
+        <Password
+          placeholder="••••••••"
+          toggleMask
+          feedback={false}
           type="password"
           name="password"
           id="password"
           onChange={handleChange}
         />
+        <a href="#">
+          <small>
+            Mot de passe oublié ?
+          </small>
+          </a>
       </div>
       <div className="mt-3">
-        <Button type="submit" disabled={!form.email || !form.password}>
-          login
+        <Button
+          style={commonStyles.primarybutton}
+          type="submit"
+          disabled={!form.email || !form.password}
+        >
+          Se connecter
         </Button>
       </div>
     </form>
