@@ -1,26 +1,23 @@
-import type { ListDecisionsItemProps } from "./Decisions";
 import { Button } from "primereact/button";
 import { Rating } from "primereact/rating";
 import { individualAccuracyScore } from "../../helpers/scores";
 import { classNames } from "primereact/utils";
 import { Tag } from "primereact/tag";
 import { Knob } from "primereact/knob";
-import { useDecisions } from "../../hooks/useDecisions";
 import { useEffect, useState } from "react";
 import { commonStyles } from "../../helpers/styles";
 
-const ListDecisionsItem = ({ decision }: ListDecisionsItemProps) => {
-    const {putDecisionOutcome} = useDecisions();
-    const [outcome, setOutcome] = useState<number | null>()
+const ListDecisionsItem = ({ decision, putDecisionOutcome }: any) => {
+  const [outcome, setOutcome] = useState<number | null>();
 
-    const handleSubmit = (outcome: number, id: string) => {
-        putDecisionOutcome({outcome, id})
-        setOutcome(outcome)
-    }
+  const handleSubmit = (outcome: number, id: string) => {
+    putDecisionOutcome({ outcome, id });
+    setOutcome(outcome);
+  };
 
-    useEffect(() => {
-        setOutcome(decision.outcome)
-    }, [])
+  useEffect(() => {
+    setOutcome(decision.outcome);
+  }, [decision.outcome]);
   return (
     <div className="grid">
       <div className="col-12">
@@ -49,17 +46,21 @@ const ListDecisionsItem = ({ decision }: ListDecisionsItemProps) => {
               <div className="flex align-items-center gap-3">
                 <span className="flex align-items-center gap-2">
                   <i className="pi pi-tag"></i>
-                  <span className="font-semibold">{decision.category_id}</span>
-                  
+                  <span className="font-semibold">
+                    {decision.category.display_name}
+                  </span>
                 </span>
-
               </div>
-                <span style={commonStyles.accent} />
+              <span style={commonStyles.accent} />
             </div>
             <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
               {" "}
               <div>
-                <div className="font-semibold">{outcome === null ? "Évaluer la décision" : "Score de précision"}</div>
+                <div className="font-semibold">
+                  {outcome === null
+                    ? "Évaluer la décision"
+                    : "Score de précision"}
+                </div>
                 <div className="flex align-items-center mt-3">
                   {outcome === null && (
                     <>
@@ -76,7 +77,6 @@ const ListDecisionsItem = ({ decision }: ListDecisionsItemProps) => {
                           severity="danger"
                           icon="pi pi-trash"
                           onClick={() => handleSubmit(0, decision.id)}
-
                         />
                       </div>
                     </>
@@ -84,10 +84,8 @@ const ListDecisionsItem = ({ decision }: ListDecisionsItemProps) => {
                   {outcome === 0 && (
                     <Knob
                       value={
-                        individualAccuracyScore(
-                          decision.confidence,
-                          outcome,
-                        ) * 100
+                        individualAccuracyScore(decision.confidence, outcome) *
+                        100
                       }
                       readOnly
                     />
@@ -95,21 +93,28 @@ const ListDecisionsItem = ({ decision }: ListDecisionsItemProps) => {
                   {outcome === 1 && (
                     <Knob
                       value={
-                        individualAccuracyScore(
-                          decision.confidence,
-                          outcome,
-                        ) * 100
+                        individualAccuracyScore(decision.confidence, outcome) *
+                        100
                       }
                       readOnly
                     />
                   )}
-                  <Tag className="ml-5" value={outcome}></Tag>
+                  <Tag
+                    className="ml-5"
+                    value={
+                      outcome === null
+                        ? "En cours"
+                        : outcome === 0
+                          ? "Echec"
+                          : "Succès"
+                    }
+                  ></Tag>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>      
+      </div>
     </div>
   );
 };
