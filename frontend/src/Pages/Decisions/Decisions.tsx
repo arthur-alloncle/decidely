@@ -19,19 +19,20 @@ export interface DecisionForm {
 export interface Props {
   decisions?: Decision[];
   categories?: Category[];
+  putDecisionOutcome?: (body: { outcome: number; id: string }) => Promise<void>;
 }
 
-// Submit not optional
+// Submit can't be optional
 export interface SubmitProps extends Props {
   onSubmit: (form: DecisionForm) => Promise<void>;
 }
 
 export interface ListDecisionsItemProps {
-  decision: Decision
+  decision: Decision;
 }
 
 function DecisionsDashboard() {
-  const { decisions, createDecision } = useDecisions();
+  const { decisions, createDecision, putDecisionOutcome } = useDecisions();
   const { categories } = useCategories();
 
   return (
@@ -49,7 +50,10 @@ function DecisionsDashboard() {
         <Card title="Vos décisions" style={commonStyles.card}>
           <span style={commonStyles.accent} />
 
-          <ListDecisions decisions={decisions} />
+          <ListDecisions
+            decisions={decisions}
+            putDecisionOutcome={putDecisionOutcome}
+          />
         </Card>
       </div>
     </div>

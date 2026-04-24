@@ -73,6 +73,13 @@ export const list = async (req: IGetUserAuthInfoRequest, res: Response) => {
       limit: pageSize,
       offset,
       order: [["createdAt", "DESC"]],
+      include: [
+        {
+          model: Category,
+          as: "category",
+          attributes: ["id", "name", "display_name"],
+        },
+      ],
     });
     return res.status(200).json({
       status: 200,
