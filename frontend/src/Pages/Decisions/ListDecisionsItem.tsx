@@ -7,6 +7,7 @@ import { Tag } from "primereact/tag";
 import { Knob } from "primereact/knob";
 import { useDecisions } from "../../hooks/useDecisions";
 import { useEffect, useState } from "react";
+import { commonStyles } from "../../helpers/styles";
 
 const ListDecisionsItem = ({ decision }: ListDecisionsItemProps) => {
     const {putDecisionOutcome} = useDecisions();
@@ -49,8 +50,11 @@ const ListDecisionsItem = ({ decision }: ListDecisionsItemProps) => {
                 <span className="flex align-items-center gap-2">
                   <i className="pi pi-tag"></i>
                   <span className="font-semibold">{decision.category_id}</span>
+                  
                 </span>
+
               </div>
+                <span style={commonStyles.accent} />
             </div>
             <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
               {" "}
@@ -105,7 +109,7 @@ const ListDecisionsItem = ({ decision }: ListDecisionsItemProps) => {
             </div>
           </div>
         </div>
-      </div>
+      </div>      
     </div>
   );
 };
