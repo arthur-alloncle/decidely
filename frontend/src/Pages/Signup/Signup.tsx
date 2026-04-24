@@ -1,8 +1,11 @@
-import { useLogin } from "../../hooks/useLogin";
-import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
+import { useSignup } from "../../hooks/useSignup";
 
 export interface FormState {
+  first_name: string;
+  last_name: string;
   email: string;
+  date_of_birth: Date | null;
   password: string;
 }
 
@@ -11,8 +14,8 @@ export interface Props {
   onSubmit: (form: FormState) => Promise<void>;
 }
 
-function Login() {
-  const { loginUser } = useLogin();
+function Signup() {
+  const { createNewUser } = useSignup();
 
   return (
     <>
@@ -20,10 +23,10 @@ function Login() {
         <h1>Login</h1>
       </div>
       <div className="flex justify-content-center">
-        <LoginForm onSubmit={loginUser}></LoginForm>
+        <SignupForm onSubmit={createNewUser}></SignupForm>
       </div>
     </>
   );
 }
 
-export default Login;
+export default Signup;

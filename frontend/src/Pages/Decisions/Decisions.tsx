@@ -23,7 +23,6 @@ export interface Props {
 // Submit not optional 
 export interface SubmitProps extends Props {
   onSubmit: (form: DecisionForm) => Promise<void>
-  
 }
 
 function DecisionsDashboard() {

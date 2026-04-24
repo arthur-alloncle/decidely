@@ -7,5 +7,16 @@ export const login = async (body: { email: string; password: string }) => {
     },
     body: JSON.stringify(body),
   });
-    return res.json();
+  return res.json();
+};
+
+export const createUser = async (body: any) => {
+  const res = await fetch("http://localhost:5000/auth/createUser", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  return res.json();
 };
