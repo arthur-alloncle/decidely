@@ -3,12 +3,14 @@ import type { Props } from "./Decisions";
 import { Badge } from "primereact/badge";
 import { Button } from "primereact/button";
 import { Rating } from "primereact/rating";
+import type Decision from "../../interfaces/decision.interface";
+import { individualAccuracyScore } from "../../helpers/scores";
 
 const ListDecisions = ({ decisions }: Props) => {
   return (
     <>
       <Accordion activeIndex={0}>
-        {decisions?.map((decision) => (
+        {decisions?.map((decision: Decision) => (
           <AccordionTab
             key={decision.id}
             header={
@@ -24,27 +26,50 @@ const ListDecisions = ({ decisions }: Props) => {
               <div className="col-12 lg:col-6">
                 <p className="font-semibold">Variables</p>
                 <p> Niveau de confiance</p>
-                  <Rating value={decision.confidence * 10} stars={10} readOnly cancel={false} />
-                  
+                <Rating
+                  value={decision.confidence * 10}
+                  stars={10}
+                  readOnly
+                  cancel={false}
+                />
+                {decision.confidence * 10}
+
                 <p>Impact</p>
-                  <Rating value={decision.importance} stars={4} readOnly cancel={false} />
-                
+                <Rating
+                  value={decision.importance}
+                  stars={4}
+                  readOnly
+                  cancel={false}
+                />
               </div>
               <div className="col-12 text-center lg:col-6">
-                <p className="font-semibold">Évaluer la décision</p>
-                <div className="flex justify-content-center">
-                  <Button
-                    label="Bonne"
-                    severity="success"
-                    icon="pi pi-check"
-                    className="mr-3"
-                  />
-                  <Button
-                    label="Mauvaise"
-                    severity="danger"
-                    icon="pi pi-trash"
-                  />
-                </div>
+                {decision.outcome !== null && (
+                  <>
+                    <p className="font-semibold">Votre score de précision</p>
+
+                    {
+                      individualAccuracyScore(decision.confidence, decision.outcome)
+                    }
+                  </>
+                )}
+                {decision.outcome === null && (
+                  <>
+                    <p className="font-semibold">Évaluer la décision</p>
+                    <div className="flex justify-content-center">
+                      <Button
+                        label="Bonne"
+                        severity="success"
+                        icon="pi pi-check"
+                        className="mr-3"
+                      />
+                      <Button
+                        label="Mauvaise"
+                        severity="danger"
+                        icon="pi pi-trash"
+                      />
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </AccordionTab>

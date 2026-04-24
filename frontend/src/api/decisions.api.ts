@@ -12,13 +12,7 @@ export const getDecisions = async () => {
 
   list.data.map((decision: Decision) => {
     formated.push({
-      ...decision,
-      outcome:
-        decision.outcome === 0
-          ? "echec"
-          : decision.outcome === null
-            ? "en cours"
-            : "succes",
+      ...decision
     });
   });
   return formated;
