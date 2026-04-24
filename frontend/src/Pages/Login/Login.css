@@ -1,0 +1,36 @@
+  .wrapper {
+    min-height: "100vh";
+    background-color: "#0B0B0B";
+    display: "flex";
+    align-items: "center";
+    justify-content: "center";
+    font-family: "'Geist'; 'DM Sans'; sans-serif";
+  }
+  .card {
+    background-color: "#ffffff";
+    border-radius: "16px";
+    padding: "48px 40px";
+    width: "100%";
+    max-width: "420px";
+    box-shadow: "0 24px 64px rgba(0;0;0;0.4)";
+  }
+  .accent {
+    display: "inline-block";
+    width: "32px";
+    height: "4px";
+    background-color: "#FFC400";
+    border-radius: "2px";
+    margin-bottom: "20px";
+  }
+  .title {
+    font-size: "28px";
+    font-weight: "700";
+    color: "#0B0B0B";
+    margin: "0 0 6px 0";
+    letter-spacing: "-0.5px";
+  }
+  .subtitle {
+    font-size: "14px";
+    color: "#6B7280";
+    margin: "0 0 36px 0";
+  }

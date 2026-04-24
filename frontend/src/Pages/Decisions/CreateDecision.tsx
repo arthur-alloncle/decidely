@@ -3,6 +3,7 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import type { DecisionForm, SubmitProps } from "./Decisions";
+import { commonStyles } from "../../helpers/styles";
 
 function CreateDecision({ categories, onSubmit }: SubmitProps) {
   const [decisionForm, setDecisionForm] = useState<DecisionForm>({
@@ -78,7 +79,7 @@ function CreateDecision({ categories, onSubmit }: SubmitProps) {
         </div>
 
         <div className="mt-3">
-          <Button type="submit">Envoyer</Button>
+          <Button style={commonStyles.primarybutton} type="submit">Envoyer</Button>
         </div>
       </form>
     </>

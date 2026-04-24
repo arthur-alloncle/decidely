@@ -6,6 +6,7 @@ import type Category from "../../interfaces/category.interface";
 
 import { useDecisions } from "../../hooks/useDecisions";
 import { useCategories } from "../../hooks/useCategories";
+import { commonStyles } from "../../helpers/styles";
 
 export interface DecisionForm {
   outcome: null | number;
@@ -20,36 +21,32 @@ export interface Props {
   categories?: Category[];
 }
 
-// Submit not optional 
+// Submit not optional
 export interface SubmitProps extends Props {
-  onSubmit: (form: DecisionForm) => Promise<void>
+  onSubmit: (form: DecisionForm) => Promise<void>;
 }
 
 function DecisionsDashboard() {
   const { decisions, createDecision } = useDecisions();
   const { categories } = useCategories();
-  
+
   return (
-    <div className="grid">
+    <div className="grid flex-1">
       <div className="col-12 lg:col-3">
         <h1>Créer une décision</h1>
-        <Card>
-          <CreateDecision 
-          categories={categories}
-          onSubmit={createDecision}/>
+        <Card title="Créer une décision" style={commonStyles.card}>
+          <span style={commonStyles.accent} />
+
+          <CreateDecision categories={categories} onSubmit={createDecision} />
         </Card>
       </div>
       <div className="col-12 lg:col-9">
         <h1>Liste des décisions</h1>
-        <Card>
+        <Card title="Vos décisions" style={commonStyles.card}>
+          <span style={commonStyles.accent} />
+
           <ListDecisions decisions={decisions} />
         </Card>
-        <div className="col-12">
-          <h1>Statistiques</h1>
-          <Card>
-            <p>Ce que vos décisions disent de vous</p>
-          </Card>
-        </div>
       </div>
     </div>
   );

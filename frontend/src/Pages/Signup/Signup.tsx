@@ -1,5 +1,13 @@
 import SignupForm from "./SignupForm";
 import { useSignup } from "../../hooks/useSignup";
+import { commonStyles } from "../../helpers/styles";
+import { Card } from "primereact/card";
+
+const styles = {
+  signupcard: {
+    maxWidth: "800px"
+  }
+}
 
 export interface FormState {
   first_name: string;
@@ -19,12 +27,15 @@ function Signup() {
 
   return (
     <>
-      <div className="text-center">
-        <h1>Login</h1>
-      </div>
-      <div className="flex justify-content-center">
-        <SignupForm onSubmit={createNewUser}></SignupForm>
-      </div>
+      <Card
+        style={{maxWidth: "800px", ...commonStyles.card}}
+        title="Créer un compte"
+        subTitle="Tous les champs sont obligatoires"
+      >
+        <div className="flex justify-content-center">
+          <SignupForm onSubmit={createNewUser}></SignupForm>
+        </div>
+      </Card>
     </>
   );
 }
