@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { getDecisions, postDecision } from "../api/decisions.api";
+import {
+  getDecisions,
+  postDecision,
+  updateDecisionOutcome,
+} from "../api/decisions.api";
 import type Decision from "../interfaces/decision.interface";
 
 export const useDecisions = () => {
@@ -22,7 +26,16 @@ export const useDecisions = () => {
       const newDecision = await postDecision(form);
 
       decisions && setDecisions((prev) => [...(prev as []), newDecision]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
+  const putDecisionOutcome = async (body: any) => {
+    try {
+      updateDecisionOutcome(body).then((res) => {
+        return res.json();
+      });
     } catch (err) {
       console.error(err);
     }
@@ -36,5 +49,6 @@ export const useDecisions = () => {
     decisions,
     loading,
     createDecision,
+    putDecisionOutcome,
   };
 };

@@ -30,3 +30,16 @@ export const postDecision = async (body: BodyInit | null | undefined) => {
 
     return res.json()
 }
+
+export const updateDecisionOutcome = async (body: BodyInit | null | undefined) => {
+  const res = await fetch("http://localhost:5000/decision/updateOutcome", {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    return res.json()
+}

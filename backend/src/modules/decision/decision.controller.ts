@@ -4,6 +4,7 @@ import { Decision } from "../../models/Decision";
 import { Category } from "../../models/Category";
 import { v4 as uuidv4 } from "uuid";
 import { CreatedAt } from "sequelize-typescript";
+import { where } from "sequelize";
 
 interface IGetUserAuthInfoRequest extends Request {
   user?: { id: string }; // or any other type
@@ -87,7 +88,7 @@ export const list = async (req: IGetUserAuthInfoRequest, res: Response) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ status: 500, message: "Error fetching decitions; Server error" });
+      .json({ status: 500, message: "Error fetching decision; Server error" });
   }
 };
 
@@ -102,4 +103,37 @@ export const listAll = async (req: IGetUserAuthInfoRequest, res: Response) => {
   });
 
   return res.json(decisions);
+};
+
+export const update = async (req: IGetUserAuthInfoRequest, res: Response) => {
+  try {
+    const userId = req.user?.id;
+    const outcome = req.body.outcome;
+    const decisionId = req.body.id;
+    if (!userId) {
+      return res.status(401).json({ message: "Non authentifié" });
+    }
+
+    const updateDecision = await Decision.update(
+      {
+        outcome,
+        updatedAt: new Date(),
+      },
+      {
+        where: {
+          user_id: userId,
+          id: decisionId,
+        },
+      },
+    );
+    return res.status(204).json({
+      status: 204,
+      message: "Successfuly updated",
+      data: updateDecision,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ status: 500, message: "Error updating decision; Server error" });
+  }
 };

@@ -26,6 +26,10 @@ export interface SubmitProps extends Props {
   onSubmit: (form: DecisionForm) => Promise<void>;
 }
 
+export interface ListDecisionsItemProps {
+  decision: Decision
+}
+
 function DecisionsDashboard() {
   const { decisions, createDecision } = useDecisions();
   const { categories } = useCategories();
