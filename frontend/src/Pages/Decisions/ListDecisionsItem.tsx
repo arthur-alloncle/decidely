@@ -5,8 +5,21 @@ import { individualAccuracyScore } from "../../helpers/scores";
 import { classNames } from "primereact/utils";
 import { Tag } from "primereact/tag";
 import { Knob } from "primereact/knob";
+import { useDecisions } from "../../hooks/useDecisions";
+import { useEffect, useState } from "react";
 
 const ListDecisionsItem = ({ decision }: ListDecisionsItemProps) => {
+    const {putDecisionOutcome} = useDecisions();
+    const [outcome, setOutcome] = useState<number | null>()
+
+    const handleSubmit = (outcome: number, id: string) => {
+        putDecisionOutcome({outcome, id})
+        setOutcome(outcome)
+    }
+
+    useEffect(() => {
+        setOutcome(decision.outcome)
+    }, [])
   return (
     <div className="grid">
       <div className="col-12">
@@ -42,9 +55,9 @@ const ListDecisionsItem = ({ decision }: ListDecisionsItemProps) => {
             <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
               {" "}
               <div>
-                <div className="font-semibold">Évaluer la décision</div>
+                <div className="font-semibold">{outcome === null ? "Évaluer la décision" : "Score de précision"}</div>
                 <div className="flex align-items-center mt-3">
-                  {decision.outcome === null && (
+                  {outcome === null && (
                     <>
                       <div className="flex justify-content-center">
                         <Button
@@ -52,38 +65,41 @@ const ListDecisionsItem = ({ decision }: ListDecisionsItemProps) => {
                           severity="success"
                           icon="pi pi-check"
                           className="mr-3"
+                          onClick={() => handleSubmit(1, decision.id)}
                         />
                         <Button
                           label="Mauvaise"
                           severity="danger"
                           icon="pi pi-trash"
+                          onClick={() => handleSubmit(0, decision.id)}
+
                         />
                       </div>
                     </>
                   )}
-                  {decision.outcome === 0 && (
+                  {outcome === 0 && (
                     <Knob
                       value={
                         individualAccuracyScore(
                           decision.confidence,
-                          decision.outcome,
+                          outcome,
                         ) * 100
                       }
                       readOnly
                     />
                   )}
-                  {decision.outcome === 1 && (
+                  {outcome === 1 && (
                     <Knob
                       value={
                         individualAccuracyScore(
                           decision.confidence,
-                          decision.outcome,
+                          outcome,
                         ) * 100
                       }
                       readOnly
                     />
                   )}
-                  <Tag className="ml-5" value={decision.outcome}></Tag>
+                  <Tag className="ml-5" value={outcome}></Tag>
                 </div>
               </div>
             </div>
