@@ -15,17 +15,20 @@ const wrapperStyle = {
     alignItems: "center",
     justifyContent: "center",
     fontFamily: "'Geist', 'DM Sans', sans-serif",
-    width: '100%'
+    width: '100%',
 }
 
 export function App() {
   return (
+    
     <div style={wrapperStyle}>
+      <div style={{maxWidth: "1600px"}} className="flex-1">
       <Routes>
         <Route element={<Login />} path="/login" />
         <Route element={<DecisionsDashboard />} path="/decisions" />
         <Route element={<Signup />} path="/signup" />
       </Routes>
+    </div>
     </div>
   )
 }

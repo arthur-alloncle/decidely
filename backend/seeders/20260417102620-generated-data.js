@@ -106,7 +106,7 @@ module.exports = {
       decisions.push({
         id: uuidv4(),
         title: faker.lorem.sentence(3),
-        confidence: faker.number.float({ min: 0.3, max: 0.95 }),
+        confidence: faker.number.float({ min: 0.1, max: 1, fractionDigits: 1 }),
         outcome,
         importance: faker.number.int({ min: 1, max: 4 }),
         user_id: randomUser.id,

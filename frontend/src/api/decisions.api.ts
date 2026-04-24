@@ -12,13 +12,7 @@ export const getDecisions = async () => {
 
   list.data.map((decision: Decision) => {
     formated.push({
-      ...decision,
-      outcome:
-        decision.outcome === 0
-          ? "echec"
-          : decision.outcome === null
-            ? "en cours"
-            : "succes",
+      ...decision
     });
   });
   return formated;
@@ -27,6 +21,19 @@ export const getDecisions = async () => {
 export const postDecision = async (body: BodyInit | null | undefined) => {
     const res = await fetch("http://localhost:5000/decision/create", {
       method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    return res.json()
+}
+
+export const updateDecisionOutcome = async (body: BodyInit | null | undefined) => {
+  const res = await fetch("http://localhost:5000/decision/updateOutcome", {
+      method: "PUT",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
