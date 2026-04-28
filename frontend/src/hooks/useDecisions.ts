@@ -5,14 +5,25 @@ import {
   updateDecisionOutcome,
 } from "../api/decisions.api";
 import type Decision from "../interfaces/decision.interface";
+import type { DecisionForm } from "../Pages/Decisions/Decisions";
+// import type { DecisionResponse } from "../interfaces/decision.interface";
 
-export const useDecisions = () => {
-  const [decisions, setDecisions] = useState<Decision[] | undefined>();
+export interface DecisionResponse {
+  data: Decision[];
+  pagination: { pageNumber: number; pageSize: number; total: number };
+  status: any;
+}
+
+export const useDecisions = (first: number, rows: number) => {
+  const [decisions, setDecisions] = useState<DecisionResponse | undefined>();
   const [loading, setLoading] = useState(true);
 
-  const fetchDecisions = async () => {
+  const fetchDecisions = async (page: number, limit: number) => {
     try {
-      const data: Decision[] | undefined = await getDecisions();
+      const data: DecisionResponse | undefined = await getDecisions(
+        page,
+        limit,
+      );
       setDecisions(data);
     } catch (err) {
       console.error(err);
@@ -24,8 +35,19 @@ export const useDecisions = () => {
   const createDecision = async (form: any) => {
     try {
       const newDecision = await postDecision(form);
+      fetchDecisions(0, rows)
 
-      decisions && setDecisions((prev) => [...(prev as []), newDecision]);
+
+      // setDecisions((prev) => {
+      //   console.log(prev);
+        
+      //   if (!prev) return prev;
+
+      //   return {
+      //     ...prev,
+      //     data: [...prev.data, newDecision],
+      //   };
+      // });
     } catch (err) {
       console.error(err);
     }
@@ -42,12 +64,13 @@ export const useDecisions = () => {
   };
 
   useEffect(() => {
-    fetchDecisions();
+    fetchDecisions(first, rows);
   }, []);
 
   return {
     decisions,
     loading,
+    fetchDecisions,
     createDecision,
     putDecisionOutcome,
   };

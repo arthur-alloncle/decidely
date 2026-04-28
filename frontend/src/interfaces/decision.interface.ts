@@ -7,3 +7,9 @@ export default interface Decision {
   user_id: string;
   category_id: string;
 }
+
+export interface DecisionResponse {
+  data: Decision[];
+  pagination: { pageNumber: number; pageSize: number; total: number };
+  status: any;
+}

@@ -5,13 +5,15 @@ import ListDecisionsItem from "./ListDecisionsItem";
 const ListDecisions = ({ decisions, putDecisionOutcome }: Props) => {
   return (
     <>
-      {decisions?.map((decision: Decision) => (
+      {
+      decisions?.data?.map((decision: Decision) => (
         <ListDecisionsItem
           decision={decision}
           key={decision.id}
           putDecisionOutcome={putDecisionOutcome}
         />
       ))}
+
     </>
   );
 };

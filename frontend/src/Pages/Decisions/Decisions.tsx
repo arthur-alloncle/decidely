@@ -3,10 +3,13 @@ import CreateDecision from "./CreateDecision";
 import { Card } from "primereact/card";
 import type Decision from "../../interfaces/decision.interface";
 import type Category from "../../interfaces/category.interface";
+import { Paginator, type PaginatorChangeEvent } from "primereact/paginator";
 
 import { useDecisions } from "../../hooks/useDecisions";
 import { useCategories } from "../../hooks/useCategories";
 import { commonStyles } from "../../helpers/styles";
+import { useState } from "react";
+import type { DecisionResponse } from "../../interfaces/decision.interface";
 
 export interface DecisionForm {
   outcome: null | number;
@@ -17,7 +20,7 @@ export interface DecisionForm {
 }
 
 export interface Props {
-  decisions?: Decision[];
+  decisions?: DecisionResponse;
   categories?: Category[];
   putDecisionOutcome?: (body: { outcome: number; id: string }) => Promise<void>;
 }
@@ -32,8 +35,20 @@ export interface ListDecisionsItemProps {
 }
 
 function DecisionsDashboard() {
-  const { decisions, createDecision, putDecisionOutcome } = useDecisions();
+  const [first, setFirst] = useState<number>(0);
+  const [rows, setRows] = useState<number>(10);
+  const { decisions, createDecision, putDecisionOutcome, fetchDecisions } =
+    useDecisions(first, rows);
   const { categories } = useCategories();
+
+  const onPageChange = (event: any) => {
+    console.log(event);
+
+    setFirst(event.first);
+    setRows(event.rows);
+
+    fetchDecisions(event.page, event.rows);
+  };
 
   return (
     <div className="grid flex-1">
@@ -54,6 +69,11 @@ function DecisionsDashboard() {
             decisions={decisions}
             putDecisionOutcome={putDecisionOutcome}
           />
+           <Paginator first={first} 
+           rows={decisions?.pagination.pageSize}
+           totalRecords={decisions?.pagination.total} 
+           rowsPerPageOptions={[10, 20, 30]} 
+           onPageChange={onPageChange} />
         </Card>
       </div>
     </div>

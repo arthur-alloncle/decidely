@@ -1,21 +1,16 @@
 import type Decision from "../interfaces/decision.interface";
 
-export const getDecisions = async () => {
-  const res = await fetch("http://localhost:5000/decision/list", {
+export const getDecisions = async (page: number, limit: number) => {
+  const res = await fetch(`http://localhost:5000/decision/list?limit=${limit}&page=${page}`, {
     credentials: "include",
   });
   if (!res.ok) {
     return;
   }
   const list = await res.json();
-  let formated: Decision[] = [];
+  
 
-  list.data.map((decision: Decision) => {
-    formated.push({
-      ...decision
-    });
-  });
-  return formated;
+  return list;
 };
 
 export const postDecision = async (body: BodyInit | null | undefined) => {
