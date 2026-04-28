@@ -3,8 +3,6 @@ import { Request, Response } from "express";
 import { Decision } from "../../models/Decision";
 import { Category } from "../../models/Category";
 import { v4 as uuidv4 } from "uuid";
-import { CreatedAt } from "sequelize-typescript";
-import { where } from "sequelize";
 
 interface IGetUserAuthInfoRequest extends Request {
   user?: { id: string }; // or any other type
@@ -40,7 +38,7 @@ export const create = async (req: IGetUserAuthInfoRequest, res: Response) => {
       updatedAt: new Date(),
     });
 
-    return res.status(201).json(decision);
+    return res.status(201).json({decision});
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Erreur serveur" });

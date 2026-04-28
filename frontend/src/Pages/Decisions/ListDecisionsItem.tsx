@@ -19,7 +19,7 @@ const ListDecisionsItem = ({ decision, putDecisionOutcome }: any) => {
     setOutcome(decision.outcome);
   }, [decision.outcome]);
   return (
-    <div className="grid">
+    <div className="grid" key={decision.id}>
       <div className="col-12">
         <div
           className={classNames(
